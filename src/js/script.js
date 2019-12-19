@@ -120,7 +120,7 @@
 
       thisApp.initData();
       thisApp.initMenu();
-    };
+    }
   };
   app.init();
 
