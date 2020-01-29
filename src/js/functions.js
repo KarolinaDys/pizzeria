@@ -37,7 +37,9 @@ utils.serializeFormToObject = function(form){
 };
 utils.convertDataSourceToDbJson = function(){
   const productJson = [];
+  // eslint-disable-next-line
   for(let key in dataSource.products){
+    // eslint-disable-next-line
     productJson.push(Object.assign({id: key}, dataSource.products[key]));
   }
 
