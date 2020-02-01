@@ -101,7 +101,7 @@ class Product {
     thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
     thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
     thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-    thisProduct.carButton = thisProduct.element.querySelector(select.menuProduct.carButton);
+    thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     thisProduct.amountWidgetElement = thisProduct.element.querySelector(select.menuProduct.amountWidget);
@@ -266,7 +266,7 @@ class Cart{
     const thisCart = this;
     thisCart.dom ={};
     thisCart.dom.wrapper = element;
-    thisCart.dom.toggleTigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
   }
   initActions(){
     const thisCart = this;
@@ -295,7 +295,7 @@ const app = {
   initCart: function(){
     const thisApp = this;
     const cartElem = document.querySelector(select.containerOf.cart);
-    thisApp.cart = new Cart(cartElem);
+    thisApp.cart = new Cart (cartElem);
   },
   init: function () {
     const thisApp = this;
