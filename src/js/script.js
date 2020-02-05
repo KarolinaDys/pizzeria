@@ -154,6 +154,7 @@ class Product {
     /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
     const formData = utils.serializeFormToObject(thisProduct.form);
     //console.log('formData', formData);
+    thisProduct.params = {};
     /* set variable price to equal thisProduct.data.price */
     let price = thisProduct.data.price;
     /* START LOOP: for each paramId in thisProduct.data.params */
@@ -178,6 +179,13 @@ class Product {
         const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
         // console.log('image', images);
         if (optionSelected) {
+          if(!thisProduct.params[paramId]){
+            thisProduct.params[paramId] ={
+              label: param.label,
+              options: {},
+            };
+          }
+          thisProduct.params[paramId].options[optionId] = option.label;
           for (let image of images) {
             image.classList.add(classNames.menuProduct.imageVisible);
           }
@@ -204,6 +212,8 @@ class Product {
   }
   addToCart(){
     const thisProduct = this;
+    thisProduct.name = thisProduct.data.name;
+    thisProduct.amount = thisProduct.amountWidget.value;
     app.cart.add(thisProduct);
   }
 }
@@ -267,6 +277,7 @@ class Cart{
     thisCart.dom ={};
     thisCart.dom.wrapper = element;
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
   }
   initActions(){
     const thisCart = this;
@@ -276,8 +287,11 @@ class Cart{
     });
   }
   add(menuProduct){
-    //const thisCart = this;
-    console.log('adding product' , menuProduct);
+    const thisCart = this;
+    const generatedHTML = templates.cartProduct(menuProduct);
+    const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+    thisCart.dom.productList.appendChild(generatedDOM);
+    console.log ('adding product', menuProduct);
   }
 }
 const app = {
