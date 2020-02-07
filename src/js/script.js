@@ -224,8 +224,8 @@ class AmountWidget {
     thisWidget.value = settings.amountWidget.defaultValue;
     thisWidget.setValue(thisWidget.input.value);
     thisWidget.initActions();
-    console.log('AmountWidget: ', thisWidget);
-    console.log('constructor arguments: ', element);
+    // console.log('AmountWidget: ', thisWidget);
+    //console.log('constructor arguments: ', element);
   }
   getElements(element) {
     const thisWidget = this;
@@ -270,7 +270,7 @@ class Cart{
     thisCart.products = [];
     thisCart.getElements(element);
     thisCart.initActions();
-    console.log('New Cart', thisCart);
+    //console.log('New Cart', thisCart);
   }
   getElements(element){
     const thisCart = this;
@@ -286,11 +286,15 @@ class Cart{
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
   }
+  CartProduct(){
+    constructor()
+  }
   add(menuProduct){
     const thisCart = this;
     const generatedHTML = templates.cartProduct(menuProduct);
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
     thisCart.dom.productList.appendChild(generatedDOM);
+    //
     console.log ('adding product', menuProduct);
   }
 }
