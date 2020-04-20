@@ -6,7 +6,7 @@ const app = {
   initBooking: function(){
     const thisApp = this;
     thisApp.bookingWidget = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking(bookingWidget);
+    thisApp.booking = new Booking(thisApp.bookingWidget);
   },
   initPages: function(){
     const thisApp = this;
