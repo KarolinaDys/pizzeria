@@ -1,5 +1,5 @@
-import {select, settings, classNames, templates} from './settings.js';
-import utils from './utils.js';
+import {select, settings, classNames, templates} from '../settings.js';
+import {utils} from '../utils.js';
 import CartProduct from './CartProduct.js';
 class Cart{
   constructor(element){
@@ -71,7 +71,6 @@ class Cart{
     const thisCart = this;
     const index = thisCart.products.indexOf('cartProduct');
     const allRemovedIndex = thisCart.products.splice(index, 1);
-    console.log('allRemovedIndex', allRemovedIndex);
     cartProduct.dom.wrapper.remove();
     thisCart.update();
   }
@@ -100,7 +99,11 @@ class Cart{
     fetch(url, options)
       .then(function(response){
         return response.json();
+      })
+      .catch(function (err) {
+        console.error(err);
       });
+      
   } 
 }
 export default Cart;
