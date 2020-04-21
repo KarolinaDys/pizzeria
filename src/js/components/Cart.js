@@ -40,6 +40,7 @@ class Cart{
       thisCart.sendOrder();
     });
   }
+
   add(menuProduct){
     const thisCart = this;
     const generatedHTML = templates.cartProduct(menuProduct);
@@ -48,6 +49,7 @@ class Cart{
     thisCart.products.push(new CartProduct(menuProduct , generatedDOM));
     thisCart.update();
   }
+
   update(){
     const thisCart = this;
     thisCart.totalNumber = 0;
@@ -67,6 +69,7 @@ class Cart{
       }
     }
   }
+
   remove(cartProduct){
     const thisCart = this;
     const index = thisCart.products.indexOf('cartProduct');
@@ -74,6 +77,7 @@ class Cart{
     cartProduct.dom.wrapper.remove();
     thisCart.update();
   }
+
   sendOrder(){
     const url = settings.db.url + '/' + settings.db.order;
     const thisCart = this; //zapytać czy na pewno dobrze dodałem ten element? nie było informacji w zadaniu o tym
@@ -86,6 +90,7 @@ class Cart{
       deliveryFee: thisCart.deliveryFee,
       products: [],
     };
+
     for (let product of thisCart.products) {
       payload.products.push(product.getData());
     }
@@ -96,6 +101,7 @@ class Cart{
       },
       body: JSON.stringify(payload),
     };
+
     fetch(url, options)
       .then(function(response){
         return response.json();
